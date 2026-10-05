@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tucker Rewards – Earn Rewards & Gift Cards</title>
+  <meta name="description" content="Tucker Rewards: complete tasks, earn coins, redeem gift cards. Amazon, Google Play, PayPal & more." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#16a34a" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Auth screen -->
+  <div id="auth-screen" class="screen auth-screen hidden">
+    <div class="auth-card">
+      <div class="logo">💰</div>
+      <h1>Tucker Rewards</h1>
+      <p class="subtitle">Earn Rewards & Gift Cards</p>
+      <div class="auth-points">
+        <span>🎁 Amazon</span><span>🎮 Google Play</span><span>💵 PayPal</span>
+      </div>
+      <input id="auth-name" type="text" placeholder="Enter your name" maxlength="30" autocomplete="name" />
+      <input id="auth-referral" type="text" placeholder="Referral code (optional)" maxlength="12" />
+      <button id="btn-start" class="btn-primary">Start Earning →</button>
+      <p class="tiny">100 coins = $1.00 • Free to use • No purchase needed</p>
+    </div>
+  </div>
+
+  <!-- Main app -->
+  <div id="app" class="hidden">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-icon">💰</span>
+        <div>
+          <strong>Tucker Rewards</strong>
+          <small id="user-greeting">Hi, Earner!</small>
+        </div>
+      </div>
+      <button id="wallet-chip" class="wallet-chip" title="Wallet">
+        🪙 <span id="coin-balance">0</span>
+        <small>≈ $<span id="usd-balance">0.00</span></small>
+      </button>
+    </header>
+
+    <div class="streak-banner" id="streak-banner">
+      🔥 <span id="streak-text">Day 1 streak</span> • Check in daily to keep it going!
+    </div>
+
+    <main>
+      <!-- HOME -->
+      <section id="tab-home" class="tab active">
+        <div class="balance-card">
+          <div>
+            <small>Total balance</small>
+            <h2>🪙 <span id="home-coins">0</span> coins</h2>
+            <p>≈ $<span id="home-usd">0.00</span> USD • 100 coins = $1</p>
+          </div>
+          <button class="btn-redeem" data-goto="rewards">Redeem 🎁</button>
+        </div>
+
+        <h3>⚡ Earn today</h3>
+        <div class="task-list">
+          <div class="task">
+            <div class="task-ico">📅</div>
+            <div class="task-info"><strong>Daily check-in</strong><small>+50 coins • streak bonus</small></div>
+            <button class="btn-small" id="btn-checkin">Claim</button>
+          </div>
+          <div class="task">
+            <div class="task-ico">🎡</div>
+            <div class="task-info"><strong>Lucky spin</strong><small id="spin-left">3 spins left • win 10–100</small></div>
+            <button class="btn-small" id="btn-spin">Spin</button>
+          </div>
+          <div class="task">
+            <div class="task-ico">📺</div>
+            <div class="task-info"><strong>Watch short video</strong><small>+20 coins • max 10/day</small></div>
+            <button class="btn-small" id="btn-video">+20</button>
+          </div>
+        </div>
+
+        <h3>📋 Offer wall</h3>
+        <div id="offer-list" class="offer-list"></div>
+
+        <h3>👥 Refer & earn 500</h3>
+        <div class="refer-card">
+          <div>
+            <strong id="refer-code">TUCKER-XXXX</strong>
+            <small>Share your code, get 500 coins per friend</small>
+          </div>
+          <button class="btn-small" id="btn-copy-ref">Copy</button>
+        </div>
+        <div class="refer-row">
+          <input id="refer-input" placeholder="Enter friend code" maxlength="20" />
+          <button class="btn-small" id="btn-apply-ref">Apply</button>
+        </div>
+      </section>
+
+      <!-- REWARDS -->
+      <section id="tab-rewards" class="tab">
+        <h3>🎁 Gift Card Store</h3>
+        <p class="muted">Redeem coins for real gift cards. Demo mode – codes are simulated.</p>
+        <div id="store-grid" class="store-grid"></div>
+        <h3>🧾 My redemptions</h3>
+        <div id="redemption-list" class="history-list"><p class="muted">No redemptions yet.</p></div>
+      </section>
+
+      <!-- WALLET -->
+      <section id="tab-wallet" class="tab">
+        <h3>👛 Wallet & history</h3>
+        <div class="wallet-stats">
+          <div><small>Earned</small><strong id="stat-earned">+0</strong></div>
+          <div><small>Redeemed</small><strong id="stat-spent">-0</strong></div>
+          <div><small>Cash value</small><strong>$<span id="stat-usd">0.00</span></strong></div>
+        </div>
+        <div id="history-list" class="history-list"></div>
+        <button id="btn-reset" class="btn-danger">Reset demo data</button>
+      </section>
+
+      <!-- PROFILE -->
+      <section id="tab-profile" class="tab">
+        <h3>👤 Profile</h3>
+        <div class="profile-card">
+          <div class="avatar" id="profile-avatar">T</div>
+          <div>
+            <strong id="profile-name">Earner</strong><br />
+            <small>Member since <span id="profile-since">—</span></small><br />
+            <small>🔥 <span id="profile-streak">0</span> day streak • 🎡 <span id="profile-spins">3</span> spins left</small>
+          </div>
+        </div>
+        <h3>🏆 Leaderboard (demo)</h3>
+        <div id="leaderboard" class="history-list"></div>
+        <div class="info-box">
+          <strong>How to go live & actually pay users:</strong>
+          <ol>
+            <li>Add Firebase Auth + Firestore for real accounts & balances.</li>
+            <li>Add offer-wall / ads SDK (AdMob, Unity Ads, CPAGrip, AdGem).</li>
+            <li>Fulfill gift cards via Tremendous / Tango Card API.</li>
+            <li>Add fraud checks: device ID, rate limits, manual review &gt; $5.</li>
+            <li>Publish as PWA or wrap with Capacitor for Play Store.</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottomnav">
+      <button data-tab="home" class="active">🏠<small>Home</small></button>
+      <button data-tab="rewards" data-goto="rewards">🎁<small>Rewards</small></button>
+      <button data-tab="wallet">👛<small>Wallet</small></button>
+      <button data-tab="profile">👤<small>Profile</small></button>
+    </nav>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <h2 id="modal-title">🎉</h2>
+      <p id="modal-text"></p>
+      <div id="modal-code" class="gift-code hidden"></div>
+      <button id="modal-ok" class="btn-primary">Awesome!</button>
+    </div>
+  </div>
+
+  <!-- Spin overlay -->
+  <div id="video-overlay" class="modal hidden">
+    <div class="modal-card">
+      <h2>📺 Sponsored video…</h2>
+      <div class="video-bar"><div id="video-progress"></div></div>
+      <p id="video-text">Watching… 5s</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+    }
+  </script>
+</body>
+</html>
