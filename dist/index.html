@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tucker Reward — Android Money Earning App</title>
+<meta name="description" content="Tucker Reward is an Android money-earning app with Banner, Interstitial and Rewarded AdMob ads. Watch videos and browse pages to earn coins." />
+<style>
+  :root{--blue:#2196F3;--green:#4CAF50;--gold:#FFC107;--ink:#212121;--muted:#616161;--bg:#F5F7FB;--card:#fff}
+  *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+  header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #e8e8e8}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  .nav{display:flex;align-items:center;gap:12px;height:60px}
+  .coin{width:36px;height:36px;border-radius:50%;background:var(--gold);border:3px solid #7B3F00;display:flex;align-items:center;justify-content:center;font-weight:900;color:#5d3a00}
+  .brand{font-weight:800;font-size:18px}.brand small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+  .spacer{flex:1}.pill{font-size:12px;background:#E3F2FD;color:#1565C0;padding:6px 10px;border-radius:999px;font-weight:700}
+  .hero{background:linear-gradient(135deg,#2196F3 0%,#1565C0 55%,#0D47A1 100%);color:#fff;padding:56px 0 48px}
+  .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+  h1{margin:0 0 12px;font-size:44px;line-height:1.05}@media(max-width:600px){h1{font-size:32px}}
+  .sub{opacity:.92;font-size:16px;line-height:1.6;max-width:560px}
+  .cta-row{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:14px 20px;border-radius:10px;font-weight:800;text-decoration:none;border:0;cursor:pointer}
+  .btn-green{background:var(--green);color:#fff}.btn-white{background:#fff;color:#1565C0}.btn-blue{background:var(--blue);color:#fff}
+  .meta{margin-top:16px;font-size:13px;opacity:.85}
+  .phone{background:#fff;border-radius:28px;padding:18px 18px 14px;max-width:320px;margin:0 auto;box-shadow:0 24px 60px rgba(0,0,0,.35);color:#212121}
+  .notch{width:120px;height:8px;background:#e0e0e0;border-radius:999px;margin:0 auto 14px}
+  .phone-title{text-align:center;font-weight:900;font-size:22px;margin:6px 0}
+  .phone-coins{text-align:center;color:#FF6F00;font-weight:900;font-size:18px;margin:4px 0 10px}
+  .phone-desc{text-align:center;color:#616161;font-size:13px;line-height:1.5;margin:12px 8px 18px}
+  .phone-btn{width:100%;border:0;border-radius:8px;padding:13px;font-weight:800;color:#fff;margin:8px 0}
+  .phone-banner{margin-top:12px;background:#fafafa;border:1px dashed #bbb;border-radius:8px;text-align:center;font-size:12px;color:#616161;padding:10px}
+  .section{padding:40px 0}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}@media(max-width:860px){.grid3{grid-template-columns:1fr}}
+  .card{background:var(--card);border-radius:14px;padding:20px;box-shadow:0 4px 18px rgba(0,0,0,.06);border:1px solid #eee}
+  .card h3{margin:8px 0}.badge{display:inline-block;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px}
+  .b-banner{background:#E3F2FD;color:#1565C0}.b-inter{background:#E8F5E9;color:#2E7D32}.b-reward{background:#FFF8E1;color:#F57F00}
+  code{background:#111;color:#0f0;padding:2px 6px;border-radius:6px;font-size:13px}
+  pre{background:#111;color:#e8e8e8;padding:16px;border-radius:12px;overflow:auto;font-size:13px;line-height:1.6}
+  .dl{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:14px;padding:16px;margin-top:16px;flex-wrap:wrap}
+  footer{padding:28px 0 60px;color:#757575;font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <div class="coin">T</div>
+  <div class="brand">Tucker Reward <small>Android money earning app</small></div>
+  <div class="spacer"></div>
+  <span class="pill">compileSdk 34 • minSdk 21 • AdMob</span>
+</div></header>
+
+<div class="hero"><div class="wrap hero-grid">
+  <div>
+    <h1>Watch videos.<br/>Browse pages.<br/>Earn coins.</h1>
+    <p class="sub">Tucker Reward is a native Android app built from your project zip. Banner stays pinned at the bottom, Interstitial shows on “Next Page”, and Rewarded video grants coins <b>only</b> after the video is fully watched.</p>
+    <div class="cta-row">
+      <a class="btn btn-green" href="./app-debug.apk" id="downloadBtn">Download APK</a>
+      <a class="btn btn-white" href="#build">How to build</a>
+    </div>
+    <div class="meta">Package <code>com.example.tuckerreward</code> • version 1.0 (1) • MainActivity + NextActivity</div>
+  </div>
+  <div>
+    <div class="phone" aria-label="App preview">
+      <div class="notch"></div>
+      <div class="phone-title">Tucker Reward</div>
+      <div class="phone-coins" id="coinsLabel">Coins: 0</div>
+      <div class="phone-desc">Watch videos and browse pages to earn coins. Complete the reward video fully to receive your coins.</div>
+      <button class="phone-btn" style="background:#4CAF50" onclick="earn()">Watch Video &amp; Earn Coins</button>
+      <button class="phone-btn" style="background:#2196F3" onclick="document.getElementById('nextMsg').textContent='Next Page → interstitial then NextActivity'">Next Page</button>
+      <div id="nextMsg" style="text-align:center;font-size:12px;color:#2E7D32;min-height:18px"></div>
+      <div class="phone-banner">BANNER 320×50<br/><span style="font-size:11px">AdMob • hides on no-fill</span></div>
+    </div>
+  </div>
+</div></div>
+
+<div class="wrap section">
+  <div class="grid3">
+    <div class="card"><span class="badge b-banner">1 • BANNER</span><h3>Sticky bottom bar</h3><p style="color:#616161">Loaded after SDK init. Hides itself on failure so content is never blocked. Lifecycle pause / resume / destroy wired.</p></div>
+    <div class="card"><span class="badge b-inter">2 • INTERSTITIAL</span><h3>Pre-loaded navigation ad</h3><p style="color:#616161">Pre-loaded on launch. “Next Page” shows it, then navigates to NextActivity on dismiss. Auto-reloads for the next tap.</p></div>
+    <div class="card"><span class="badge b-reward">3 • REWARDED VIDEO</span><h3>Earning task</h3><p style="color:#616161">Coins granted only inside <code>onUserEarnedReward()</code>. “Video not ready” fallback never crashes and retries load.</p></div>
+  </div>
+
+  <div class="card" id="build" style="margin-top:20px">
+    <h3 style="margin-top:0">Build the real APK from this repo</h3>
+    <pre>./gradlew assembleDebug
+# APK → app/build/outputs/apk/debug/app-debug.apk
+# Package: com.example.tuckerreward</pre>
+    <p style="color:#616161">Source from your zip lives in <code>app/src/main</code> (MainActivity.java, NextActivity.java, activity_main.xml, activity_next.xml, AndroidManifest.xml). This page is a static web preview served from <code>dist/</code>.</p>
+    <div class="dl">
+      <strong>APK download:</strong>
+      <a class="btn btn-blue" href="./app-debug.apk">app-debug.apk (9 MB)</a>
+      <span style="color:#616161;font-size:13px">If the file 404s, run the gradle build above and restart the server — start.sh auto-copies it into dist/.</span>
+    </div>
+  </div>
+</div>
+
+<footer>Tucker Reward preview • static dist served on PORT • Android project builds with Gradle 8.7 + AGP 8.5.2</footer>
+<script>
+function earn(){var el=document.getElementById('coinsLabel');var m=/(\d+)/.exec(el.textContent);var c=m?parseInt(m[1],10):0;c+=10;el.textContent='Coins: '+c;}
+</script>
+</body>
+</html>
